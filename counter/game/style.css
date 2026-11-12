@@ -172,6 +172,28 @@ canvas {
   color: #fff;
 }
 
+/* 엔딩 화면: 밝은 분홍 배경 */
+.ending {
+  gap: 8px;
+  padding: 14px;
+  background: linear-gradient(160deg, #fff5f8 0%, #ffd6e4 100%);
+  color: #c2185b;
+}
+
+/* 엔딩 그림: 화면 폭에 맞추고 너무 크지 않게 */
+.ending-img {
+  width: 100%;
+  max-height: 62%;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ending-text {
+  font-size: 26px;
+  font-weight: 800;
+}
+
 /* 숨김 처리 */
 .hidden {
   display: none;
