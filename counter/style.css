@@ -1,0 +1,204 @@
+/* 테마 색상 변수 */
+:root {
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --primary-light: #eef0fd;
+  --text: #2d3142;
+  --text-muted: #8a8fa3;
+  --card-bg: #ffffff;
+  /* 숫자 부호에 따른 색상 */
+  --positive: #2e9e5b;
+  --negative: #e5484d;
+  /* 버튼 그림자 색 */
+  --shadow: rgba(70, 50, 140, 0.35);
+}
+
+/* 기본 여백 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 화면 전체: 보라색 그라데이션 배경 + 가운데 정렬 */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  color: var(--text);
+}
+
+/* 흰색 카드 */
+.card {
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 32px 44px;
+  background: var(--card-bg);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(40, 30, 90, 0.28);
+  text-align: center;
+}
+
+/* 제목 */
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* 크고 굵은 숫자 */
+.count {
+  margin: 16px 0 36px;
+  font-size: 104px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--primary-dark);
+  /* 숫자 폭을 일정하게 해서 값이 바뀔 때 흔들리지 않게 함 */
+  font-variant-numeric: tabular-nums;
+  /* 색이 바뀔 때 부드럽게 전환 */
+  transition: color 0.2s;
+}
+
+/* 양수일 때: 초록색 */
+.count.positive {
+  color: var(--positive);
+}
+
+/* 음수일 때: 빨간색 */
+.count.negative {
+  color: var(--negative);
+}
+
+/* 버튼 묶음 (위쪽 여백은 고양이 귀가 들어갈 자리) */
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 18px;
+  padding-top: 12px;
+}
+
+/* 고양이 얼굴 버튼 (+, −) */
+.btn {
+  position: relative;
+  width: 72px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: inherit;
+  color: #fff;
+  background: var(--primary);
+  border: none;
+  /* 위는 둥글고 아래는 살짝 넓은 얼굴 모양 */
+  border-radius: 50% 50% 46% 46%;
+  cursor: pointer;
+  /* drop-shadow는 귀(가상 요소)까지 함께 그림자를 만들어 줌 */
+  filter: drop-shadow(0 6px 8px var(--shadow));
+  transition: background 0.2s, color 0.2s, transform 0.15s, filter 0.2s;
+}
+
+/* 고양이 귀 (왼쪽 ::before, 오른쪽 ::after) */
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 24px;
+  height: 28px;
+  /* 버튼 얼굴과 같은 색 */
+  background: inherit;
+  transform-origin: bottom center;
+  transition: transform 0.2s;
+}
+
+/* 왼쪽 귀: 끝이 바깥쪽으로 기운 삼각형 */
+.btn::before {
+  left: 6px;
+  clip-path: polygon(0 100%, 25% 0, 100% 100%);
+}
+
+/* 오른쪽 귀: 왼쪽 귀를 좌우 반전한 삼각형 */
+.btn::after {
+  right: 6px;
+  clip-path: polygon(0 100%, 75% 0, 100% 100%);
+}
+
+/* 마우스를 올렸을 때: 살짝 떠오르고 그림자가 진해짐 */
+.btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-4px);
+  filter: drop-shadow(0 12px 12px var(--shadow));
+}
+
+/* 마우스를 올렸을 때: 귀가 쫑긋 벌어짐 */
+.btn:hover::before {
+  transform: rotate(-12deg);
+}
+
+.btn:hover::after {
+  transform: rotate(12deg);
+}
+
+/* 누르는 순간: 눌린 느낌으로 내려옴 */
+.btn:active {
+  transform: translateY(1px) scale(0.96);
+  filter: drop-shadow(0 3px 4px var(--shadow));
+}
+
+/* 키보드로 포커스했을 때 테두리 표시 */
+.btn:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 4px;
+}
+
+/* 리셋 버튼: 조금 넓은 연보라 고양이 */
+.btn-reset {
+  width: 88px;
+  font-size: 16px;
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.btn-reset:hover {
+  color: #fff;
+  background: var(--primary);
+}
+
+/* 좁은 화면(모바일) 대응 */
+@media (max-width: 400px) {
+  .card {
+    padding: 32px 20px 36px;
+  }
+
+  .count {
+    font-size: 84px;
+  }
+
+  .buttons {
+    gap: 12px;
+  }
+
+  .btn {
+    width: 64px;
+    height: 58px;
+  }
+
+  .btn-reset {
+    width: 78px;
+  }
+
+  .btn::before,
+  .btn::after {
+    width: 21px;
+    height: 25px;
+  }
+}

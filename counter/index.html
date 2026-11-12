@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카운터</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- defer: HTML을 다 읽은 뒤에 스크립트 실행 -->
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <!-- 카운터 카드 -->
+  <main class="card">
+    <h1 class="title">카운터</h1>
+
+    <!-- 현재 숫자 표시 (값이 바뀌면 스크린리더가 읽어줌) -->
+    <div id="count" class="count" aria-live="polite">0</div>
+
+    <!-- 조작 버튼들 -->
+    <div class="buttons">
+      <button id="decrease" class="btn" aria-label="1 감소">−</button>
+      <button id="reset" class="btn btn-reset">리셋</button>
+      <button id="increase" class="btn" aria-label="1 증가">+</button>
+    </div>
+  </main>
+</body>
+</html>

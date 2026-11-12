@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>승은이 키우기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 게임 전체를 감싸는 카드 -->
+  <main class="card">
+    <h1 class="title">🐉 승은이 키우기</h1>
+
+    <!-- 점수판 -->
+    <div class="scoreboard">
+      <div class="score-box">
+        <span class="label">점수</span>
+        <span id="score" class="value">0</span>
+      </div>
+      <div class="score-box">
+        <span class="label">최고 점수</span>
+        <span id="best" class="value">0</span>
+      </div>
+      <div class="score-box">
+        <span class="label">레벨</span>
+        <span id="level" class="value">1</span>
+      </div>
+    </div>
+
+    <!-- 난이도 선택 + 일시정지 버튼 -->
+    <div class="controls">
+      <label class="difficulty">
+        난이도
+        <select id="difficulty">
+          <option value="easy">쉬움</option>
+          <option value="normal" selected>보통</option>
+          <option value="hard">어려움</option>
+          <option value="extreme">매우 어려움</option>
+        </select>
+      </label>
+      <button id="pause-btn" class="pause-btn" type="button" disabled>일시정지</button>
+    </div>
+
+    <!-- 캔버스와 그 위에 겹치는 안내 화면 -->
+    <div class="board">
+      <canvas id="game" width="400" height="400"></canvas>
+
+      <!-- 시작 화면 -->
+      <div id="start-screen" class="overlay">
+        <p class="overlay-title">승은이를 키워 보세요!</p>
+        <p class="overlay-text">방향키로 움직이고 승진이를 먹으면 +10점</p>
+        <button id="start-btn" class="btn" type="button">게임 시작</button>
+      </div>
+
+      <!-- 게임 오버 화면 (처음에는 숨김) -->
+      <div id="over-screen" class="overlay hidden">
+        <p class="overlay-title">게임 오버</p>
+        <p class="overlay-text">이번 점수: <strong id="final-score">0</strong>점</p>
+        <p id="new-record" class="record hidden">🎉 최고 기록 달성!</p>
+        <button id="restart-btn" class="btn" type="button">다시 시작</button>
+      </div>
+    </div>
+
+    <!-- 터치용 방향 버튼 (십자 모양) -->
+    <div class="pad">
+      <button class="pad-btn pad-up" type="button" data-key="ArrowUp" aria-label="위">▲</button>
+      <button class="pad-btn pad-left" type="button" data-key="ArrowLeft" aria-label="왼쪽">◀</button>
+      <button class="pad-btn pad-right" type="button" data-key="ArrowRight" aria-label="오른쪽">▶</button>
+      <button class="pad-btn pad-down" type="button" data-key="ArrowDown" aria-label="아래">▼</button>
+    </div>
+
+    <p class="help">방향키 · 화면 스와이프 · 방향 버튼으로 조종</p>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
