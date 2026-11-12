@@ -57,13 +57,16 @@
         <p class="overlay-title">게임 오버</p>
         <p class="overlay-text">이번 점수: <strong id="final-score">0</strong>점</p>
         <p id="new-record" class="record hidden">🎉 최고 기록 달성!</p>
+        <!-- 엔딩 점수 미만일 때만 이 화면이 나오므로 힌트를 항상 보여 줌 -->
+        <p class="hint">300점을 넘으면 히든 화면♡</p>
         <button id="restart-btn" class="btn" type="button">다시 시작</button>
       </div>
 
-      <!-- 엔딩 화면: 400점 달성 시 (처음에는 숨김) -->
+      <!-- 엔딩 화면: 300점 이상으로 게임 오버되면 게임 오버 화면 대신 나옴 (처음에는 숨김) -->
       <div id="ending-screen" class="overlay ending hidden">
         <img class="ending-img" src="love.png" alt="하트를 만드는 두 사람 그림">
         <p class="ending-text">축하합니다! 승은♡</p>
+        <p class="ending-score">이번 점수: <strong id="ending-score">0</strong>점</p>
         <button id="ending-restart-btn" class="btn" type="button">다시 하기</button>
       </div>
     </div>

@@ -15,7 +15,7 @@ const DIFFICULTY_SPEED = {
 const LEVEL_SCORE = 50; // 이 점수마다 레벨업
 const LEVEL_SPEEDUP = 10; // 레벨업마다 간격을 이만큼(ms) 줄여서 빨라짐
 const MIN_SPEED = 20; // 아무리 빨라져도 이보다 짧아지지 않음
-const CLEAR_SCORE = 400; // 이 점수를 달성하면 엔딩
+const CLEAR_SCORE = 300; // 이 점수 이상으로 게임 오버되면 엔딩
 const BEST_KEY = "snakeBestScore"; // LocalStorage 저장 이름
 
 // 승은이 색상
@@ -40,6 +40,7 @@ const finalScoreEl = document.getElementById("final-score");
 const newRecordEl = document.getElementById("new-record");
 const levelEl = document.getElementById("level");
 const endingScreen = document.getElementById("ending-screen");
+const endingScoreEl = document.getElementById("ending-score");
 const difficultyEl = document.getElementById("difficulty");
 const pauseBtn = document.getElementById("pause-btn");
 
@@ -158,14 +159,6 @@ function tick() {
     // 먹이를 먹으면 꼬리를 그대로 둬서 한 칸 길어짐
     score += 10;
 
-    // 목표 점수에 닿으면 엔딩을 보여 주고 게임을 마침
-    if (score >= CLEAR_SCORE) {
-      updateScore();
-      draw();
-      gameClear();
-      return;
-    }
-
     // 50점마다 레벨업 → 속도를 올려서 타이머를 다시 시작
     const newLevel = Math.floor(score / LEVEL_SCORE) + 1;
     if (newLevel !== level) {
@@ -198,15 +191,17 @@ function placeFood() {
     : { x: -1, y: -1 };
 }
 
-// ===== 엔딩 (목표 점수 달성) =====
-function gameClear() {
-  stopGame();
-  endingScreen.classList.remove("hidden");
-}
-
 // ===== 게임 오버 =====
+// 목표 점수 이상이면 엔딩 화면, 아니면 일반 게임 오버 화면을 보여 줌
 function gameOver() {
   const isRecord = stopGame();
+
+  if (score >= CLEAR_SCORE) {
+    endingScoreEl.textContent = score;
+    endingScreen.classList.remove("hidden");
+    return;
+  }
+
   finalScoreEl.textContent = score;
   newRecordEl.classList.toggle("hidden", !isRecord);
   overScreen.classList.remove("hidden");

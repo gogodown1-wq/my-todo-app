@@ -194,6 +194,19 @@ canvas {
   font-weight: 800;
 }
 
+/* 게임 오버 화면의 히든 엔딩 힌트 */
+.hint {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffb3cf;
+}
+
+/* 엔딩 화면의 점수 줄 */
+.ending-score {
+  font-size: 15px;
+  color: #8a3b5c;
+}
+
 /* 숨김 처리 */
 .hidden {
   display: none;
